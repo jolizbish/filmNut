@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
-import JobDescription from './JobDescription.jsx';
-import ItemList from './ItemList.jsx';
+import SearchMovies from './SearchMovies.jsx';
+import MovieList from './MovieList.jsx';
 
 
 class App extends React.Component {
@@ -10,17 +10,17 @@ class App extends React.Component {
     this.state = {
       text: '',
       allMyMovies: [{
-        title: 'Hatari',
-        year: 1962,
-        genre: 'comedy'
+        'title': 'Hatari',
+        'year': 1962,
+        'genre': 'comedy'
       }, {
         title: 'The Pink Panther',
-        year: 1963,
-        genre: 'comedy'
+        'year': 1963,
+        'genre': 'comedy'
       }, {
         title: 'Charade',
-        year: 1963,
-        genre: 'thriller'
+        'year': 1963,
+        'genre': 'thriller'
       }],
       maybeTonights: []
     };
@@ -31,7 +31,6 @@ class App extends React.Component {
 
   componentDidMount() {
     console.log('Component mounted!');
-    // console.log('initial state: ', this.state);
   }
 
   onTextEntryHandleChange(event) {
@@ -73,8 +72,8 @@ class App extends React.Component {
   }
 
   deselect(movie) {
-    var newAllMyMovies = this.state.allMyMovies.filter((el) => el !== movie);
-    var newMaybeTonights = this.state.newMaybeTonights.concat(movie);
+    var newMaybeTonights = this.state.maybeTonights.filter((el) => el !== movie);
+    var newAllMyMovies = this.state.allMyMovies.concat(movie);
     this.setState({
       allMyMovies: newAllMyMovies,
       maybeTonights: newMaybeTonights
@@ -93,7 +92,7 @@ class App extends React.Component {
           id="all-movies"
           title="ALL MOVIES"
           symbol="+"
-          skills={this.state.allMyMovies}
+          movies={this.state.allMyMovies}
           onSelect={this.select}
         />
         <hr />
@@ -101,7 +100,7 @@ class App extends React.Component {
           id="potential-movies"
           title="MAYBE TONIGHT"
           symbol="X"
-          skills={this.state.maybeTonights}
+          movies={this.state.maybeTonights}
           onSelect={this.deselect}
         />
       </div>
